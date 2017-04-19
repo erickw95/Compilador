@@ -34,10 +34,38 @@ class Main {
 		        			case DecafLexer.ID:
 		        				type = " IDENTIFIER";
 		        				break;
-						case DecafLexer.CHAR:
+						case DecafLexer.CHARLITERAL:
 							type = " CHARLITERAL";
 							break;
-						//case DecafLexer.
+						case DecafLexer.STRINGLITERAL:
+							type = " STRINGLITERAL";
+							break;
+						case DecafLexer.INTLITERAL:
+							type = " INTLITERAL";	
+							break;
+						case DecafLexer.BOOLEANLITERAL:
+							type = " BOOLEANLITERAL";	
+							break;
+						case DecafLexer.HEXERROR:
+							type = " error";
+							break;
+						case DecafLexer.RESERVED:
+							type = "";
+							break;
+						case DecafLexer.OP:
+							type = " op";
+							break;
+						case DecafLexer.SEPARATOR:
+							type = " sep";
+							break;
+						case DecafLexer.RCURLY:
+						case DecafLexer.LCURLY:
+						case DecafLexer.RSQUARE:
+						case DecafLexer.LSQUARE:
+						case DecafLexer.LPARENT:
+						case DecafLexer.RPARENT:
+							type = " ";
+							break;
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
 		        		}
@@ -54,7 +82,7 @@ class Main {
         		DecafLexer lexer = new DecafLexer(new ANTLRInputStream(inputStream));
 				CommonTokenStream tokens = new CommonTokenStream(lexer);
         		DecafParser parser = new DecafParser(tokens);
-                parser.program();
+                        parser.program();
         	}
         	
         } catch(Exception e) {
