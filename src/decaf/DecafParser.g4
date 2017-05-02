@@ -10,4 +10,20 @@ options
   tokenVocab=DecafLexer;
 }
 
-program: TK_class ID LCURLY RCURLY EOF;
+
+program : classDecl EOF;
+
+
+classDecl : CLASS IDENTIFIER LCURLY fieldDecl* methodDecl* RCURLY;
+
+
+fieldDecl :
+	TYPE 
+	(IDENTIFIER |
+		IDENTIFIER LSQUARE INTLITERAL RSQUARE ) // vetor-array ex.: i[10]
+	SEMICOLON;
+
+	
+methodDecl : (TYPE | VOID) IDENTIFIER LPARENT args? RPARENT block;
+args : TYPE IDENTIFIER (COMMA args)*;
+block : LCURLY RCURLY ;

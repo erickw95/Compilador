@@ -8,10 +8,11 @@ options
 {
   language=Java;
 }
-tokens
-{
-  TK_class
-}
+
+//tokens
+//{
+//  TK_class
+//}
 
 // Espaço em branco
 WS_ : (' ' | '\n' | '\r' | '\t' ) -> skip;
