@@ -45,15 +45,28 @@ class Main {
 							case DecafLexer.HEXERROR:
 								type = " HEXERROR";
 								break;
+							case DecafLexer.STRINGLITERAL:
+								type = " STRINGLITERAL";
+								break;
 							case DecafLexer.IDENTIFIER:
 								type = " IDENTIFIER";
 								break;
-							case DecafLexer.RESERVED:
+							case DecafLexer.CLASS:
+							case DecafLexer.TYPE:
+							case DecafLexer.CALLOUT:
+							case DecafLexer.IF:
+							case DecafLexer.ELSE:
+							case DecafLexer.FOR:
+							case DecafLexer.VOID:
+							case DecafLexer.RETURN:
+							case DecafLexer.BREAK:
+							case DecafLexer.CONTINUE:
 								type = "";
+								break;
+							case DecafLexer.BOOLEANLITERAL:
+								type = " BOOLEANLITERAL";	
 								break;
 							case DecafLexer.OP:
-								type = "";
-								break;
 							case DecafLexer.RCURLY:
 							case DecafLexer.LCURLY:
 							case DecafLexer.RSQUARE:
@@ -63,12 +76,6 @@ class Main {
 							case DecafLexer.COMMA:
 							case DecafLexer.SEMICOLON:
 								type = "";
-								break;
-							case DecafLexer.STRINGLITERAL:
-								type = " STRINGLITERAL";
-								break;
-							case DecafLexer.BOOLEANLITERAL:
-								type = " BOOLEANLITERAL";	
 								break;
 		        			}
 							

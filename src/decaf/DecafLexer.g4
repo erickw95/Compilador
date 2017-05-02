@@ -13,23 +13,26 @@ tokens
   TK_class
 }
 
+// Espaço em branco
 WS_ : (' ' | '\n' | '\r' | '\t' ) -> skip;
+
+// Comentários
 SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-RESERVED : 
-'boolean' |
-'callout' |
-'class' |
-'else' |
-'if' |
-'int' |
-'return' |
-'void' |
-'for' |
-'break' |
-'continue' ;
 
-BOOLEANLITERAL : 'true' | 'false';
+// palavras reservadas
+CLASS 			: 'class' ;
+TYPE 			: 'boolean' | 'int' ;
+CALLOUT 		: 'callout' ;
+IF 				: 'if' ;
+ELSE 			: 'else' ;
+FOR 			: 'for' ;
+VOID 			: 'void' ;
+RETURN 			: 'return' ;
+BREAK    		: 'break' ;
+CONTINUE 		: 'continue' ;
+BOOLEANLITERAL 	: 'true' | 'false';
+
 
 LCURLY    : '{' ;
 RCURLY    : '}' ;
