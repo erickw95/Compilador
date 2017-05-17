@@ -22,10 +22,11 @@ SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
 
 // palavras reservadas
+PROGRAM                 : 'Program' ;
 CLASS 			: 'class' ;
 TYPE 			: 'boolean' | 'int' ;
 CALLOUT 		: 'callout' ;
-IF 				: 'if' ;
+IF 			: 'if' ;
 ELSE 			: 'else' ;
 FOR 			: 'for' ;
 VOID 			: 'void' ;

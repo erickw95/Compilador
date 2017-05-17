@@ -51,6 +51,7 @@ class Main {
 							case DecafLexer.IDENTIFIER:
 								type = " IDENTIFIER";
 								break;
+							case DecafLexer.PROGRAM:
 							case DecafLexer.CLASS:
 							case DecafLexer.TYPE:
 							case DecafLexer.CALLOUT:
