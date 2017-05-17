@@ -33,14 +33,14 @@ block : LCURLY (varDecl)* (statement)* RCURLY ;
 
 varDecl : TYPE IDENTIFIER (COMMA IDENTIFIER)*;
 
-statement : location OP expr
-	| methodCall
-	| IF (expr) block (ELSE block)*
-	| FOR IDENTIFIER OP expr , expr block // OP? ","?
-	| RETURN expr*
-	| BREAK
-	| CONTINUE
-	| block;
+statement : location OP expr;
+	| methodCall;
+	| IF (expr) block (ELSE block)*;
+	| FOR IDENTIFIER OP expr , expr block; // OP? ","?
+	| RETURN expr*;
+	| BREAK;
+	| CONTINUE;
+	| block
 
 methodCall : methodName ( expr (COMMA expr)* )
 	| CALLOUT ( STRINGLITERAL ) calloutArgs*;
@@ -57,5 +57,3 @@ expr : location
 	| - expr
 	| ! expr
 	| (expr);
-
-
