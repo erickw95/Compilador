@@ -28,22 +28,20 @@ args : TYPE IDENTIFIER (COMMA args)*;
 
 block : LCURLY (varDecl)* (statement)* RCURLY ;
 
-varDecl : TYPE IDENTIFIER (COMMA IDENTIFIER)*;
+varDecl : TYPE IDENTIFIER (COMMA IDENTIFIER)* SEMICOLON;
 
-statement : location ASSIGNOP expr SEMICOLON;
-
-/*
-statement : location ASSINGOP expr SEMICOLON
+statement : location (EQUAL|ASSIGNOP) expr SEMICOLON
 	| methodCall SEMICOLON
 	| IF LPARENT expr RPARENT block (ELSE block)?
 	| FOR IDENTIFIER EQUAL expr COMMA expr block
 	| RETURN expr? SEMICOLON
 	| BREAK SEMICOLON
 	| CONTINUE SEMICOLON
-	| block;*/
+	| block;
 
-methodCall : methodName LPARENT expr (COMMA expr)* RPARENT
+methodCall : methodName LPARENT methodCallArgs? RPARENT
 	| CALLOUT LPARENT STRINGLITERAL (COMMA calloutArgs)* RPARENT;
+methodCallArgs: expr (COMMA expr)*;
 
 calloutArgs : expr | STRINGLITERAL;
 	
@@ -55,7 +53,7 @@ location : IDENTIFIER
 expr : location
 	| methodCall
 	| literal
-	| expr BINARYOP expr
+	| expr (BINARYOP|UNARY) expr
 	| UNARY expr
 	| NEG expr
 	| LPARENT expr RPARENT;

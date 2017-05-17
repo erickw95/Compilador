@@ -45,11 +45,13 @@ RPARENT   : ')' ;
 COMMA     : ',' ;
 SEMICOLON : ';';
 
+
 NEG : '!';
-ASSIGNOP : '+=' | '-=' | '*=' | '/=' | EQUAL;
-BINARYOP : '+' | '*' | '/' | '%' | '<' | '>' | '>=' | '<=' | '!=' | '==' | '&&' | '||';
 EQUAL : '='; // separação necessarioa para caso do for
+ASSIGNOP : '+=' | '-=' | '*=' | '/=';
 UNARY : '-';
+BINARYOP : '+' | '*' | '/' | '%' | '<' | '>' | '>=' | '<=' | '!=' | '==' | '&&' | '||';
+
 
 IDENTIFIER  : ('_' | LETTER)('_' | LETTER | DIGIT)* ;
 fragment LETTER : ('a'..'z' | 'A'..'Z');
