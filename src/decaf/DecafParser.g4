@@ -11,11 +11,8 @@ options
 }
 
 
-program : classDecl EOF;
-
-
-classDecl : CLASS IDENTIFIER LCURLY fieldDecl* methodDecl* RCURLY;
-
+program : CLASS PROGRAM classBody EOF;
+classBody : LCURLY fieldDecl* methodDecl* RCURLY;
 
 fieldDecl :
 	TYPE 
@@ -33,17 +30,22 @@ block : LCURLY (varDecl)* (statement)* RCURLY ;
 
 varDecl : TYPE IDENTIFIER (COMMA IDENTIFIER)*;
 
-statement : location OP expr;
-	| methodCall;
-	| IF (expr) block (ELSE block)*;
-	| FOR IDENTIFIER OP expr , expr block; // OP? ","?
-	| RETURN expr*;
-	| BREAK;
-	| CONTINUE;
-	| block
+statement : location ASSIGNOP expr SEMICOLON;
 
-methodCall : methodName ( expr (COMMA expr)* )
-	| CALLOUT ( STRINGLITERAL ) calloutArgs*;
+/*
+statement : location ASSINGOP expr SEMICOLON
+	| methodCall SEMICOLON
+	| IF LPARENT expr RPARENT block (ELSE block)?
+	| FOR IDENTIFIER EQUAL expr COMMA expr block
+	| RETURN expr? SEMICOLON
+	| BREAK SEMICOLON
+	| CONTINUE SEMICOLON
+	| block;*/
+
+methodCall : methodName LPARENT expr (COMMA expr)* RPARENT
+	| CALLOUT LPARENT STRINGLITERAL (COMMA calloutArgs)* RPARENT;
+
+calloutArgs : expr | STRINGLITERAL;
 	
 methodName : IDENTIFIER;
 
@@ -53,7 +55,9 @@ location : IDENTIFIER
 expr : location
 	| methodCall
 	| literal
-	| expr binOP expr
-	| - expr
-	| ! expr
-	| (expr);
+	| expr BINARYOP expr
+	| UNARY expr
+	| NEG expr
+	| LPARENT expr RPARENT;
+ 
+literal: BOOLEANLITERAL | INTLITERAL | CHARLITERAL;

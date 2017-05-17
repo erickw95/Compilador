@@ -45,7 +45,11 @@ RPARENT   : ')' ;
 COMMA     : ',' ;
 SEMICOLON : ';';
 
-OP : '+' | '-' | '*' | '<' | '>' | '>=' | '<=' | '!=' | '&&' | '=' | '==' | '||';
+NEG : '!';
+ASSIGNOP : '+=' | '-=' | '*=' | '/=' | EQUAL;
+BINARYOP : '+' | '*' | '/' | '%' | '<' | '>' | '>=' | '<=' | '!=' | '==' | '&&' | '||';
+EQUAL : '='; // separação necessarioa para caso do for
+UNARY : '-';
 
 IDENTIFIER  : ('_' | LETTER)('_' | LETTER | DIGIT)* ;
 fragment LETTER : ('a'..'z' | 'A'..'Z');

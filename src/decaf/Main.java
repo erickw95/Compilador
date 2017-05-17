@@ -67,7 +67,11 @@ class Main {
 							case DecafLexer.BOOLEANLITERAL:
 								type = " BOOLEANLITERAL";	
 								break;
-							case DecafLexer.OP:
+							case DecafLexer.BINARYOP:
+							case DecafLexer.UNARY:
+							case DecafLexer.NEG:
+							case DecafLexer.EQUAL:
+							case DecafLexer.ASSIGNOP:
 							case DecafLexer.RCURLY:
 							case DecafLexer.LCURLY:
 							case DecafLexer.RSQUARE:
