@@ -3,14 +3,24 @@ package decaf;
 import java.io.*;
 //import antlr.Token;
 import org.antlr.v4.runtime.*;
-//import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.Token;
 //import org.antlr.v4.runtime.ANTLRInputStream;
 //import org.antlr.v4.runtime.CommonTokenStream;
 import java6035.tools.CLI.*;
 
 class Main {
 
-    public static void main(String[] args)
+	static class DecafParseTreeListener extends DecafParserBaseListener { 
+		@Override
+		public void enterVarDecl(DecafParser.VarDeclContext ctx) {
+			System.out.println("" + ctx.getChild(1));
+		}
+	}
+
+
+
+    	public static void main(String[] args)
 	{
         try
 		{
@@ -99,9 +109,14 @@ class Main {
         	else if (CLI.target == CLI.PARSE || CLI.target == CLI.DEFAULT)
         	{
         		DecafLexer lexer = new DecafLexer(new ANTLRInputStream(inputStream));
-				CommonTokenStream tokens = new CommonTokenStream(lexer);
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
         		DecafParser parser = new DecafParser(tokens);
-				parser.program();
+			
+			ParseTree tree = parser.program();
+			System.out.println(tree.toStringTree(parser));
+			ParseTreeWalker walker = new ParseTreeWalker();
+			DecafParseTreeListener listener = new DecafParseTreeListener();
+			walker.walk(listener, tree);
         	}
         	
         } catch(Exception e) {
