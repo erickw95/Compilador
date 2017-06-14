@@ -11,14 +11,6 @@ import java6035.tools.CLI.*;
 
 class Main {
 
-	static class DecafParseTreeListener extends DecafParserBaseListener { 
-		@Override
-		public void enterVarDecl(DecafParser.VarDeclContext ctx) {
-			System.out.println("" + ctx.getChild(1));
-		}
-	}
-
-
 
     	public static void main(String[] args)
 	{
@@ -112,12 +104,23 @@ class Main {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
         		DecafParser parser = new DecafParser(tokens);
 			
-			ParseTree tree = parser.program();
-			System.out.println(tree.toStringTree(parser));
-			ParseTreeWalker walker = new ParseTreeWalker();
-			DecafParseTreeListener listener = new DecafParseTreeListener();
-			walker.walk(listener, tree);
+			parser.program();
         	}
+		else if (CLI.target == CLI.INTER)
+		{
+        		DecafLexer lexer = new DecafLexer(new ANTLRInputStream(inputStream));
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
+        		DecafParser parser = new DecafParser(tokens);
+			
+			ParseTree tree = parser.program();
+			if(CLI.debug)
+				System.out.println(tree.toStringTree(parser));
+
+			ParseTreeWalker walker = new ParseTreeWalker();
+			DecafTreeListener listener = new DecafTreeListener();
+			walker.walk(listener, tree);
+		}
+
         	
         } catch(Exception e) {
         	// print the error:
