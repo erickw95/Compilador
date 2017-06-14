@@ -6,6 +6,10 @@ Compilador para a linguagem DECAF construído com [ANTLR4](https://github.com/an
 - [Erick Weissenstein](https://github.com/erickw95)
 - [Felipe P. Silva](https://github.com/felipepsilva)
 
+### Entrega Final
+Entrega final para a disciplina Construção de Compiladores UniCEUB 2017/01.
+[[Link do Release]](https://github.com/erickw95/Compilador/tree/v0.1)
+
 ## Uso
 Formato da linha de comando:
 ```
@@ -15,7 +19,6 @@ Interface de linha de comando disponibiliza o argumento `-target`, que pode ser 
 ```
 java -jar dist/Compiler.jar -target inter arquivo.dcf
 ```
-
 
 
 
